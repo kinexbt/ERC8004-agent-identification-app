@@ -32,10 +32,10 @@ export default function Footer() {
   return (
     <footer className="w-full text-center border-t-[1px] border-gray-100 border-opacity-40 py-10 mt-10">
       <div className="text-white">
-        copyright @2023 Join our{" "}
+        copyright @2025 Relayer Join our{" "}
         <a
           className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
-          href="https://twitter.com/Flaregods"
+          href="https://twitter.com/Relayer"
           target="_blank"
           rel="noreferrer"
         >

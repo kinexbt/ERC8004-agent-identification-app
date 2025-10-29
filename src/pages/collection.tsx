@@ -21,16 +21,13 @@ export default function Collection() {
           <Fade>
             <div className="flex flex-col gap-5">
               <h1 className="md:text-[100px] text-[50px] font-extrabold text-center text-white">
-                5000
+                10000
               </h1>
               <h1 className="text-xl text-center text-gray-400 uppercase">
                 Total Items in collection
               </h1>
               <h1 className="text-xl text-center text-gray-400 uppercase">
-                5000 Flaregods; 12 different traits. 10 backgrounds, 4 Angelic
-                Wings, 8 Divine Attire, 4 Divine Dazzel, 11 Headdress, 3 Mystic
-                Vel, 7 Radiance, 6 Radiant Gaze, 10 Sentinel Plate, 10 Weapons &
-                More.
+                10,000 Relayer Agent Identities. Each agent features unique traits including capabilities, trust models, endpoints, and visual characteristics. Built on ERC-8004 Identity Registry standard.
               </h1>
             </div>
           </Fade>

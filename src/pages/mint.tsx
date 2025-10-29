@@ -9,12 +9,10 @@ import { motion } from "framer-motion";
 import { ScaleLoader } from "react-spinners";
 import { ethers } from "ethers";
 
-import MINTCONTRACT_ABI from "../../public/abis/MINTCONTACT_ABI.json";
-import GFLRTOKENCONTRACT_ABI from "../../public/abis/GFLRTOKENCONTRACT_ABI.json";
+import AGENT_IDENTITY_ABI from "../../public/abis/AGENT_IDENTITY_ABI.json";
 import {
-  MINTCONTRACT_ADDR,
+  AGENT_IDENTITY_CONTRACT_ADDR,
   PUBLICMINTPRICE,
-  TOKENCONTRACT_ADDR,
   WHITELISTMINTPRICE,
 } from "../config";
 import { useWeb3React } from "@web3-react/core";
@@ -51,9 +49,9 @@ export default function Mint() {
       : null;
   const Signer = provider?.getSigner();
 
-  const MINTCONTRACT = new ethers.Contract(
-    MINTCONTRACT_ADDR,
-    MINTCONTRACT_ABI,
+  const AGENT_CONTRACT = new ethers.Contract(
+    AGENT_IDENTITY_CONTRACT_ADDR,
+    AGENT_IDENTITY_ABI,
     Signer
   );
 
@@ -61,7 +59,7 @@ export default function Mint() {
     if (account) {
       if (whtieListMintState && !endWhiteListState) {
         setLoadingState(true);
-        await MINTCONTRACT.mintWhiteList(mintCount, {
+        await AGENT_CONTRACT.mintWhitelist(mintCount, {
           value: ethers.utils.parseEther(
             (WHITELISTMINTPRICE * mintCount).toString()
           ),
@@ -85,7 +83,7 @@ export default function Mint() {
           });
       } else {
         setLoadingState(true);
-        await MINTCONTRACT.mint(mintCount, {
+        await AGENT_CONTRACT.mint(mintCount, {
           value: ethers.utils.parseEther(
             (PUBLICMINTPRICE * mintCount).toString()
           ),
@@ -115,12 +113,12 @@ export default function Mint() {
 
   const getMintData = async () => {
     setLoadingState(true);
-    const counts = await MINTCONTRACT.totalSupply();
+    const counts = await AGENT_CONTRACT.totalSupply();
     setTotalSupply(Number(counts));
-    const state = await MINTCONTRACT.isWhiteListActive();
+    const state = await AGENT_CONTRACT.whitelistMintActive();
     setWhiteListMintState(state);
     console.log("setWhiteListMintState", state);
-    const count = await MINTCONTRACT.whiteList(account);
+    const count = await AGENT_CONTRACT.whitelist(account);
     setWhiteListCounts(Number(count));
     setLoadingState(false);
   };
@@ -183,9 +181,9 @@ export default function Mint() {
               </div>
               <div className="flex items-center justify-center w-full mt-10">
                 <h1 className="text-xl font-normal text-center text-white">
-                  The FlareGod NFTs
+                  Relayer Agent NFTs
                   <br />
-                  FlareGod Minting Cost = 999 FLR
+                  Agent Minting Cost = 0.001 ETH
                 </h1>
               </div>
               <div className="flex items-center justify-between w-full mt-5">
@@ -221,10 +219,10 @@ export default function Mint() {
               </div>
               <div className="flex items-center justify-center w-full mt-5">
                 <h1 className="text-2xl font-bold text-center text-white">
-                  {totalSupply} / 5000
+                  {totalSupply} / 10000
                 </h1>
               </div>
-              {totalSupply !== 5000 ? (
+              {totalSupply !== 10000 ? (
                 <>
                   <div className="relative">
                     <div
@@ -244,7 +242,7 @@ export default function Mint() {
                   </div>
                   <div className="flex items-center justify-center w-full mt-2">
                     <h1 className="text-sm font-bold text-center text-white">
-                      1500 NFTs during Whitelist
+                      10,000 Agent Identities Available
                     </h1>
                   </div>
                 </>

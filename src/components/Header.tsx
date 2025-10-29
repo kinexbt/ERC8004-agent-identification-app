@@ -106,15 +106,6 @@ export default function Header() {
         </div>
 
         <div className="flex items-center">
-          {/* <Link href={"https://doodlebunnyflr.live/mint"} passHref>
-          <li
-            className={`text-[1.5rem] hover:text-white duration-300 transition-all cursor-pointer gradient_link ${
-              router.pathname === "/" ? "text-red-500 underline" : ""
-            }`}
-          >
-            Mint
-          </li>
-        </Link> */}
           {account ? (
             <button
               onClick={() => disconnect()}
@@ -226,18 +217,6 @@ export default function Header() {
                     onClick={() => setMenuOpen(false)}
                   >
                     Mint
-                  </li>
-                </Link>
-                <Link href={"/claim"} passHref>
-                  <li
-                    className={`text-lg font-normal ${
-                      router.pathname === "/claim"
-                        ? "text-cyan-500"
-                        : "text-white"
-                    } uppercase list-none transition-all duration-300 cursor-pointer hover:text-cyan-500`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Claim
                   </li>
                 </Link>
               </div>

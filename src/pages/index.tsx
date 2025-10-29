@@ -42,21 +42,15 @@ const Home: NextPage = () => {
           <Bounce>
             <div>
               <h1 className="2xl:text-[65px] xl:text-[55px] lg:text-[50px] md:text-[40px] text-[30px] font-extrabold text-white text-center lg:text-left">
-                FlareGod NFTs FOR EVERYONE
+                Relayer Agent NFTs
               </h1>
               <p className="text-center text-gray-400 lg:text-left">
-                Welcome to Flaregods, 5000 unique and intricately designed
-                Flaregods warriors.
+                Welcome to Relayer, 10,000 unique autonomous agent identities built on ERC-8004 standard.
               </p>
               <div className="flex flex-col items-center justify-center gap-2 md:justify-start md:flex-row">
                 <Link href="/mint" passHref>
                   <button className="w-full px-10 py-4 mt-5 font-bold text-black transition-all duration-300 bg-white rounded-md lg:w-auto hover:bg-gray-400">
                     Mint
-                  </button>
-                </Link>
-                <Link href="/claim" passHref>
-                  <button className="w-full px-10 py-4 mt-5 font-bold text-black transition-all duration-300 bg-white rounded-md lg:w-auto hover:bg-gray-400">
-                    Claim & Stake
                   </button>
                 </Link>
                 <Link href="/discord" passHref>

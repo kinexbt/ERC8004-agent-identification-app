@@ -13,7 +13,7 @@ export default function TeamCard1() {
         />
         <div className="relative z-20 w-full p-3 -mt-8">
           <div className="py-4 bg-gray-800 text-[#14c2a3] text-center">
-            Co-Founder: FlareY
+            Co-Founder: RelayerY
           </div>
         </div>
       </div>
