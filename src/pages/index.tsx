@@ -42,10 +42,11 @@ const Home: NextPage = () => {
           <Bounce>
             <div>
               <h1 className="2xl:text-[65px] xl:text-[55px] lg:text-[50px] md:text-[40px] text-[30px] font-extrabold text-white text-center lg:text-left">
-                Relayer Agent NFTs
+                MIU on ERC8004
               </h1>
               <p className="text-center text-gray-400 lg:text-left">
-                Welcome to Relayer, 10,000 unique autonomous agent identities built on ERC-8004 standard.
+                Built on <span className="text-green-400">#ERC8004</span>, for the dreamers shaping tomorrow’s ownership.
+                  MIUs are cute aura-coded companions ready to vibe with you
               </p>
               <div className="flex flex-col items-center justify-center gap-2 md:justify-start md:flex-row">
                 <Link href="/mint" passHref>

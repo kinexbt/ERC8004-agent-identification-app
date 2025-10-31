@@ -27,7 +27,8 @@ export default function Collection() {
                 Total Items in collection
               </h1>
               <h1 className="text-xl text-center text-gray-400 uppercase">
-                10,000 Relayer Agent Identities. Each agent features unique traits including capabilities, trust models, endpoints, and visual characteristics. Built on ERC-8004 Identity Registry standard.
+                10,000 MIUs, tiny aura beings glowing with digital life.
+                Own one, feel its energy, and carry your vibe across the chain
               </h1>
             </div>
           </Fade>

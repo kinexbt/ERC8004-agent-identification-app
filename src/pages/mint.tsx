@@ -183,7 +183,7 @@ export default function Mint() {
                 <h1 className="text-xl font-normal text-center text-white">
                   Relayer Agent NFTs
                   <br />
-                  Agent Minting Cost = 0.001 ETH
+                  Agent Minting Cost = 0.0015 ETH
                 </h1>
               </div>
               <div className="flex items-center justify-between w-full mt-5">

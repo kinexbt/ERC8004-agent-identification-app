@@ -86,22 +86,16 @@ export default function Header() {
             About
           </a>
           <a
-            href="#collection"
-            className="font-normal text-white transition-all duration-300 cursor-pointer text-md hover:text-green-500"
-          >
-            Collection
-          </a>
-          <a
-            className="font-normal text-white transition-all duration-300 cursor-pointer text-md hover:text-green-500"
-            href="#roadmap"
-          >
-            RoadMap
-          </a>
-          <a
             className="font-normal text-white transition-all duration-300 cursor-pointer text-md hover:text-green-500"
             href="#team"
           >
             Team
+          </a>
+          <a
+            href="#collection"
+            className="font-normal text-white transition-all duration-300 cursor-pointer text-md hover:text-green-500"
+          >
+            Collection
           </a>
         </div>
 
@@ -181,18 +175,6 @@ export default function Header() {
                     onClick={() => setMenuOpen(false)}
                   >
                     Collection
-                  </li>
-                </a>
-                <a href={"/#roadmap"}>
-                  <li
-                    className={`text-lg font-normal ${
-                      router.pathname === "/createraffle"
-                        ? "text-cyan-500"
-                        : "text-white"
-                    } uppercase list-none transition-all duration-300 cursor-pointer hover:text-cyan-500`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Roadmap
                   </li>
                 </a>
                 <a href={"/#team"}>
