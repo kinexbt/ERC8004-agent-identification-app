@@ -41,15 +41,6 @@ export default function Footer() {
         >
           Twitter
         </a>{" "}
-        &{" "}
-        <a
-          className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
-          href="https://discord.gg/auUGNVSpKb"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Discord
-        </a>{" "}
         to know more about us
       </div>
       {isVisible && (

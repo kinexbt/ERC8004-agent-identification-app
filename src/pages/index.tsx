@@ -53,11 +53,6 @@ const Home: NextPage = () => {
                     Mint
                   </button>
                 </Link>
-                <Link href="/discord" passHref>
-                  <button className="w-full px-10 py-4 mt-5 font-bold text-black transition-all duration-300 bg-white rounded-md lg:w-auto hover:bg-gray-400">
-                    Discord
-                  </button>
-                </Link>
               </div>
             </div>
           </Bounce>
@@ -84,8 +79,8 @@ const Home: NextPage = () => {
       </section>
       <About />
       <Collection />
-      <RoadMap />
-      <Team />
+      {/* <RoadMap /> */}
+      {/* <Team /> */}
     </motion.section>
   );
 };
