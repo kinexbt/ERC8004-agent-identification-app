@@ -31,11 +31,11 @@ export default function Footer() {
 
   return (
     <footer className="w-full text-center border-t-[1px] border-gray-100 border-opacity-40 py-10 mt-10">
-      <div className="flex flex-col">
-        <div className="flex">
-          Built with x402 protocol No utility No roadmap Just clouds
+      <div className="flex text-center text-gray-100 flex-col gap-2">
+        <div className="flex text-center items-center mx-auto">
+          Built with x402 protocol ● No utility ● No roadmap ● Just clouds
         </div>
-        <div className="flex">
+        <div className="flex mx-auto gap-3">
           <div className="text-white">
             <a
               className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
