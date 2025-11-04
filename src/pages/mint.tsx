@@ -281,66 +281,26 @@ type NFTIMG = {
 const nftArray: NFTIMG[] = [
   {
     id: 1,
-    imgurl: "/img/nft/v4-slider-img.png",
-  },
-  {
-    id: 9,
-    imgurl: "/img/nft/v4-slider-img2.png",
+    imgurl: "/img/nft/modal_1.png",
   },
   {
     id: 2,
-    imgurl: "/img/nft/v4-slider-img3.png",
+    imgurl: "/img/nft/modal_2.png",
   },
   {
     id: 3,
-    imgurl: "/img/nft/v4-slider-img4.png",
+    imgurl: "/img/nft/modal_3.png",
   },
   {
     id: 4,
-    imgurl: "/img/nft/v4-slider-img5.png",
+    imgurl: "/img/nft/modal_4.png",
   },
   {
     id: 5,
-    imgurl: "/img/nft/v4-slider-img6.png",
+    imgurl: "/img/nft/modal_5.png",
   },
   {
     id: 6,
-    imgurl: "/img/nft/v4-slider-img7.png",
-  },
-  {
-    id: 7,
-    imgurl: "/img/nft/v4-slider-img8.png",
-  },
-  {
-    id: 8,
-    imgurl: "/img/nft/v4-slider-img9.png",
-  },
-  {
-    id: 16,
-    imgurl: "/img/nft/v4-slider-img10.png",
-  },
-  {
-    id: 10,
-    imgurl: "/img/nft/v4-slider-img11.png",
-  },
-  {
-    id: 11,
-    imgurl: "/img/nft/v4-slider-img12.png",
-  },
-  {
-    id: 12,
-    imgurl: "/img/nft/v4-slider-img13.png",
-  },
-  {
-    id: 13,
-    imgurl: "/img/nft/v4-slider-img14.png",
-  },
-  {
-    id: 14,
-    imgurl: "/img/nft/v4-slider-img15.png",
-  },
-  {
-    id: 15,
-    imgurl: "/img/nft/v4-slider-img16.png",
+    imgurl: "/img/nft/modal_6.png",
   },
 ];

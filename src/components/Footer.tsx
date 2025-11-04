@@ -33,7 +33,7 @@ export default function Footer() {
     <footer className="w-full text-center border-t-[1px] border-gray-100 border-opacity-40 py-10 mt-10">
       <div className="flex text-center text-gray-100 flex-col gap-2">
         <div className="flex text-center items-center mx-auto">
-          Built with x402 protocol ● No utility ● No roadmap ● Just clouds
+          Powered by ERC8004 ● MIU 
         </div>
         <div className="flex mx-auto gap-3">
           <div className="text-white">
