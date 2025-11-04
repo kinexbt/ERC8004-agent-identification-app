@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import type { NextPage } from "next";
 import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -13,6 +14,10 @@ import Team from "./team";
 import { Bounce } from "react-awesome-reveal";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Countdown from "../components/Countdown";
+import AGENT_IDENTITY_ABI from "../../public/abis/AGENT_IDENTITY_ABI.json";
+import { AGENT_IDENTITY_CONTRACT_ADDR } from "../config";
+import { WindowWithEthereum } from "../types";
 
 const settings = {
   dots: false,
@@ -27,6 +32,43 @@ const settings = {
 };
 
 const Home: NextPage = () => {
+  const { account } = useWeb3React();
+  const [totalSupply, setTotalSupply] = useState<number>(0);
+  const [whitelistMintActive, setWhitelistMintActive] = useState<boolean>(false);
+
+  const provider =
+    typeof window !== "undefined" && (window as WindowWithEthereum).ethereum
+      ? new ethers.providers.Web3Provider(
+          (window as WindowWithEthereum).ethereum
+        )
+      : null;
+
+  const getMintData = async () => {
+    try {
+      if (provider && AGENT_IDENTITY_CONTRACT_ADDR !== "0x0000000000000000000000000000000000000000") {
+        const AGENT_CONTRACT = new ethers.Contract(
+          AGENT_IDENTITY_CONTRACT_ADDR,
+          AGENT_IDENTITY_ABI,
+          provider
+        );
+        const counts = await AGENT_CONTRACT.totalSupply();
+        setTotalSupply(Number(counts));
+        const state = await AGENT_CONTRACT.whitelistMintActive();
+        setWhitelistMintActive(state);
+      }
+    } catch (error) {
+      console.log("Error fetching mint data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getMintData();
+    const interval = setInterval(() => {
+      getMintData();
+    }, 30000); // Update every 30 seconds
+    return () => clearInterval(interval);
+  }, [account]);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -45,16 +87,42 @@ const Home: NextPage = () => {
                 MIU on ERC8004
               </h1>
               <p className="text-center text-gray-400 lg:text-left">
-                Built on <span className="text-green-400">#ERC8004</span>, for the dreamers shaping tomorrow’s ownership.
+                Built on <span className="text-green-400">#ERC8004</span>, for the dreamers shaping tomorrow's ownership.
                   MIUs are cute aura-coded companions ready to vibe with you
               </p>
-              <div className="flex flex-col items-center justify-center gap-2 md:justify-start md:flex-row">
+              <div className="flex items-center justify-center gap-2 md:justify-start md:flex-row">
                 <Link href="/mint" passHref>
                   <button className="w-full px-10 py-4 mt-5 font-bold text-black transition-all duration-300 bg-white rounded-md lg:w-auto hover:bg-gray-400">
                     Mint
                   </button>
                 </Link>
+
+                {/* Live Mint Counter */}
+                <div className="flex items-center justify-center mt-5 md:justify-start">
+                  <div className="px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm border-[1px] border-gray-400 rounded-lg">
+                    <h1 className="text-xl font-bold text-center text-white md:text-2xl">
+                      {totalSupply.toLocaleString()} / 10,000 Minted
+                    </h1>
+                  </div>
+                </div>
+
+                {/* Countdown Timer - Show only if whitelist is active or pre-mint */}
+                {whitelistMintActive && (
+                  <div className="flex flex-col items-center justify-center mt-3 md:items-start">
+                    <div className="px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm border-[1px] border-gray-400 rounded-lg">
+                      <Countdown
+                        endDateTime={1684310400000} // Update with actual timestamp
+                        onCanBreed={() => {}}
+                        totalSupply={totalSupply}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
+              
+              
+
+
             </div>
           </Bounce>
           <div className="flex items-center justify-center w-full lg:justify-end">

@@ -86,12 +86,6 @@ export default function Header() {
             About
           </a>
           <a
-            className="font-normal text-white transition-all duration-300 cursor-pointer text-md hover:text-green-500"
-            href="#team"
-          >
-            Team
-          </a>
-          <a
             href="#collection"
             className="font-normal text-white transition-all duration-300 cursor-pointer text-md hover:text-green-500"
           >

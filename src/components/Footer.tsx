@@ -39,31 +39,11 @@ export default function Footer() {
           <div className="text-white">
             <a
               className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
-              href="https://twitter.com/Relayer"
+              href="https://x.com/miuerc8004"
               target="_blank"
               rel="noreferrer"
             >
               Twitter
-            </a>
-          </div>
-          <div className="text-white">
-            <a
-              className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
-              href="https://opensea.io/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              OpenSea
-            </a>
-          </div>
-          <div className="text-white">
-            <a
-              className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
-              href="https://402scan.xyz/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              x402scan
             </a>
           </div>
           <div className="text-white">
@@ -74,16 +54,6 @@ export default function Footer() {
               rel="noreferrer"
             >
               BaseScan
-            </a>
-          </div>
-          <div className="text-white">
-            <a
-              className="font-bold text-yellow-300 duration-300 cursor-pointer hover:text-yellow-500 hover:underline"
-              href=""
-              target="_blank"
-              rel="noreferrer"
-            >
-              API
             </a>
           </div>
         </div>

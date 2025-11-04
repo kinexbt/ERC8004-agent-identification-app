@@ -20,31 +20,22 @@ export default function About() {
           <div className="grid w-full grid-cols-1 gap-10 mt-20 md:grid-cols-2">
             <div className="rounded-lg">
               <h1 className="text-2xl font-bold text-center text-white uppercase md:text-3xl">
-                WHAT IS Relayer?
+                WHAT IS MIU?
               </h1>
               <p className="text-xl font-normal text-gray-400">
-                Welcome to Relayer, the platform for autonomous agent identities on the blockchain. Our project consists of 10,000 unique agent NFTs built on the ERC-8004 Identity Registry standard, each representing a distinct autonomous agent with verifiable identity and capabilities.
+                MIU is a collection of 10,000 autonomous agent NFTs built on the ERC-8004 Identity Registry Standard. Each MIU acts as a unique on-chain identity with verifiable traits, capabilities, and purpose within the decentralized ecosystem.
               </p>
               <br></br>
               <p className="text-xl font-normal text-gray-400">
-                Each agent NFT is crafted with unique traits and characteristics, making them one-of-a-kind digital identities. These NFTs serve as the foundation for a decentralized ecosystem of autonomous agents, enabling trustless interactions across platforms.
+                Designed for interoperability and trust, ERC-8004 allows every MIU to function as a distinct digital agent across networks - connecting users, protocols, and systems through verified identity.
               </p>
               <br></br>
               <p className="text-xl font-normal text-gray-400">
-                We invite you to explore our collection and discover the agent identities that resonate with you. Whether you're building with agents, collecting NFTs, or exploring the future of decentralized AI, Relayer offers a gateway into the autonomous agent economy.
+                MIU represents the next evolution in blockchain infrastructure, creating a foundation for a verifiable, agent-driven future where digital entities interact, build, and evolve autonomously.
               </p>
               <br></br>
-              <p className="text-xl font-normal text-gray-400">
-                At Relayer, we are committed to building the infrastructure for the future of autonomous agents. By leveraging the ERC-8004 standard, we ensure interoperability and trust within the agent ecosystem.
-              </p>
             </div>
             <div className="flex flex-col rounded-md gap-7">
-              <div className="flex flex-col gap-4 border-[1px] border-[#14c2a3] shadow-2xl shadow-[#22B78F80] p-3 rounded-md">
-                <p className="text-3xl font-bold text-white">The Mint?</p>
-                <p className="text-lg font-normal text-red-400 md:text-2xl">
-                  Minting will be open for all at 0.001 ETH per agent. Whitelist members get 20% discount (0.0008 ETH). Collect all 10,000 unique autonomous agent identities powered by ERC-8004 standard.
-                </p>
-              </div>
               <div className="flex flex-col gap-4 border-[1px] border-[#14c2a3] shadow-2xl shadow-[#22B78F80] p-3 rounded-md">
                 <p className="text-3xl font-bold text-white">
                   What are the benefits?
@@ -63,10 +54,6 @@ export default function About() {
                 </p>
                 <p className="text-lg font-normal text-red-400 md:text-2xl">
                   Full ownership and transferability of your agent NFTs<br></br>
-                </p>
-                <p className="text-lg font-normal text-red-400 md:text-2xl">
-                  Join the future of decentralized autonomous agents and Web3 infrastructure.
-                  <br></br>
                 </p>
               </div>
             </div>
