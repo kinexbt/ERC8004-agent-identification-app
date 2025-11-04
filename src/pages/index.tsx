@@ -9,8 +9,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import About from "./about";
 import Collection from "./collection";
-import RoadMap from "./roadmap";
-import Team from "./team";
 import { Bounce } from "react-awesome-reveal";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -148,8 +146,6 @@ const Home: NextPage = () => {
       </section>
       <About />
       <Collection />
-      {/* <RoadMap /> */}
-      {/* <Team /> */}
     </motion.section>
   );
 };

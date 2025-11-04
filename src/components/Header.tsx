@@ -171,18 +171,6 @@ export default function Header() {
                     Collection
                   </li>
                 </a>
-                <a href={"/#team"}>
-                  <li
-                    className={`text-lg font-normal ${
-                      router.pathname === "/createraffle"
-                        ? "text-cyan-500"
-                        : "text-white"
-                    } uppercase list-none transition-all duration-300 cursor-pointer hover:text-cyan-500`}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Team
-                  </li>
-                </a>
                 <Link href={"/mint"} passHref>
                   <li
                     className={`text-lg font-normal ${
