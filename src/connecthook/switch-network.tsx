@@ -1,13 +1,13 @@
 import { InjectedConnector } from "@web3-react/injected-connector";
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [16],
+  supportedChainIds: [8453], // BASE Mainnet
 });
 
 const switchNetworkRequest = () =>
   (window as any).ethereum.request({
     method: "wallet_switchEthereumChain",
-    params: [{ chainId: "0x10" }],
+    params: [{ chainId: "0x2105" }], // BASE Mainnet: 8453 in hex
   });
 
 const addNetworkRequest = () =>
@@ -15,13 +15,13 @@ const addNetworkRequest = () =>
     method: "wallet_addEthereumChain",
     params: [
       {
-        chainId: "0x10",
-        chainName: "Coston Testnet",
-        rpcUrls: ["https://coston-api.flare.network/ext/C/rpc"],
-        blockExplorerUrls: ["https://coston-explorer.flare.network/"],
+        chainId: "0x2105", // BASE Mainnet: 8453
+        chainName: "Base",
+        rpcUrls: ["https://mainnet.base.org"],
+        blockExplorerUrls: ["https://basescan.org"],
         nativeCurrency: {
-          name: "CFLR",
-          symbol: "CFLR",
+          name: "Ether",
+          symbol: "ETH",
           decimals: 18,
         },
       },

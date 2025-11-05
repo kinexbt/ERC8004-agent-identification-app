@@ -10,10 +10,13 @@ import { ScaleLoader } from "react-spinners";
 import { ethers } from "ethers";
 
 import AGENT_IDENTITY_ABI from "../../public/abis/AGENT_IDENTITY_ABI.json";
+import ERC20_ABI from "../../public/abis/ERC20_ABI.json";
 import {
   AGENT_IDENTITY_CONTRACT_ADDR,
   PUBLICMINTPRICE,
   WHITELISTMINTPRICE,
+  USDC_ADDRESS,
+  USDC_DECIMALS,
 } from "../config";
 import { useWeb3React } from "@web3-react/core";
 import { errorAlert, successAlert } from "../components/toastGroup";
@@ -55,72 +58,95 @@ export default function Mint() {
     Signer
   );
 
+  const USDC_CONTRACT = new ethers.Contract(
+    USDC_ADDRESS,
+    ERC20_ABI,
+    Signer
+  );
+
   const handleMintFunc = async () => {
-    if (account) {
-      if (whtieListMintState && !endWhiteListState) {
-        setLoadingState(true);
-        await AGENT_CONTRACT.mintWhitelist(mintCount, {
-          value: ethers.utils.parseEther(
-            (WHITELISTMINTPRICE * mintCount).toString()
-          ),
-          gasLimit: 3000000 * mintCount,
-        })
-          .then((tx: any) => {
-            tx.wait()
-              .then(() => {
-                successAlert("Mint Successful!");
-                getMintData();
-                setLoadingState(false);
-              })
-              .catch(() => {
-                setLoadingState(false);
-                getMintData();
-              });
-          })
-          .catch(() => {
-            setLoadingState(false);
-            getMintData();
-          });
-      } else {
-        setLoadingState(true);
-        await AGENT_CONTRACT.mint(mintCount, {
-          value: ethers.utils.parseEther(
-            (PUBLICMINTPRICE * mintCount).toString()
-          ),
-          gasLimit: 3000000 * mintCount,
-        })
-          .then((tx: any) => {
-            tx.wait()
-              .then(() => {
-                successAlert("Mint Successful!");
-                getMintData();
-                setLoadingState(false);
-              })
-              .catch(() => {
-                setLoadingState(false);
-                getMintData();
-              });
-          })
-          .catch(() => {
-            setLoadingState(false);
-            getMintData();
-          });
-      }
-    } else {
+    if (!account) {
       errorAlert("Please connect wallet!");
+      return;
+    }
+
+    try {
+      setLoadingState(true);
+
+      // Calculate total price in USDC (6 decimals)
+      const pricePerNFT = whtieListMintState && !endWhiteListState 
+        ? WHITELISTMINTPRICE 
+        : PUBLICMINTPRICE;
+      
+      const totalPrice = ethers.utils.parseUnits(
+        (pricePerNFT * mintCount).toString(),
+        USDC_DECIMALS
+      );
+
+      // Check USDC balance
+      const balance = await USDC_CONTRACT.balanceOf(account);
+      if (balance.lt(totalPrice)) {
+        errorAlert("Insufficient USDC balance!");
+        setLoadingState(false);
+        return;
+      }
+
+      // Check and approve USDC if needed
+      const allowance = await USDC_CONTRACT.allowance(
+        account,
+        AGENT_IDENTITY_CONTRACT_ADDR
+      );
+
+      if (allowance.lt(totalPrice)) {
+        // Need to approve
+        successAlert("Please approve USDC spending...");
+        const approveTx = await USDC_CONTRACT.approve(
+          AGENT_IDENTITY_CONTRACT_ADDR,
+          ethers.constants.MaxUint256 // Approve max for future transactions
+        );
+        await approveTx.wait();
+        successAlert("USDC approved! Proceeding with mint...");
+      }
+
+      // Execute mint
+      let mintTx;
+      if (whtieListMintState && !endWhiteListState) {
+        mintTx = await AGENT_CONTRACT.mintWhitelist(mintCount, {
+          gasLimit: 300000 * mintCount,
+        });
+      } else {
+        mintTx = await AGENT_CONTRACT.mint(mintCount, {
+          gasLimit: 300000 * mintCount,
+        });
+      }
+
+      await mintTx.wait();
+      successAlert("Mint Successful!");
+      getMintData();
+      setLoadingState(false);
+    } catch (error: any) {
+      console.error("Mint error:", error);
+      errorAlert(error?.message || "Mint failed. Please try again.");
+      setLoadingState(false);
+      getMintData();
     }
   };
 
   const getMintData = async () => {
-    setLoadingState(true);
-    const counts = await AGENT_CONTRACT.totalSupply();
-    setTotalSupply(Number(counts));
-    const state = await AGENT_CONTRACT.whitelistMintActive();
-    setWhiteListMintState(state);
-    console.log("setWhiteListMintState", state);
-    const count = await AGENT_CONTRACT.whitelist(account);
-    setWhiteListCounts(Number(count));
-    setLoadingState(false);
+    try {
+      if (!account || !AGENT_IDENTITY_CONTRACT_ADDR || AGENT_IDENTITY_CONTRACT_ADDR === "0x0000000000000000000000000000000000000000") {
+        return;
+      }
+      const counts = await AGENT_CONTRACT.totalSupply();
+      setTotalSupply(Number(counts));
+      const state = await AGENT_CONTRACT.whitelistMintActive();
+      setWhiteListMintState(state);
+      console.log("setWhiteListMintState", state);
+      const count = await AGENT_CONTRACT.whitelist(account);
+      setWhiteListCounts(Number(count));
+    } catch (error) {
+      console.error("Error fetching mint data:", error);
+    }
   };
 
   useEffect(() => {
@@ -183,7 +209,12 @@ export default function Mint() {
                 <h1 className="text-xl font-normal text-center text-white">
                   Relayer Agent NFTs
                   <br />
-                  Agent Minting Cost = 0.0015 ETH
+                  Agent Minting Cost = ${PUBLICMINTPRICE} USDC
+                  {whtieListMintState && !endWhiteListState && (
+                    <span className="block text-green-400">
+                      Whitelist Price = ${WHITELISTMINTPRICE} USDC
+                    </span>
+                  )}
                 </h1>
               </div>
               <div className="flex items-center justify-between w-full mt-5">

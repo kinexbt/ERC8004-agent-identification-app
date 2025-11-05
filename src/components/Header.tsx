@@ -19,7 +19,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   async function connect() {
-    if (chainId !== 16 || chainId === undefined) {
+    if (chainId !== 8453 || chainId === undefined) {
       switchNetwork();
     }
     try {
